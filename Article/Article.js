@@ -1,7 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -88,7 +87,8 @@ const data = [
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+/* Step 1: Create a function that creates a component. 
+You will want your component to look like the template below: 
   
   <div class="article">
     <h2>{title of the article}</h2>
@@ -103,12 +103,77 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  Step 2: Add an event listener to the expandButton span. 
+  This event listener should toggle the class 'article-open' 
+  on the 'article' div.
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each 
+  oject and add each component to the DOM as children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  Step 5: Add a new article to the array. Make sure it is 
+  in the same format as the others.
+   Refresh the page to see the new article.
 
 */
+
+/*************************grap HTML Element*********************************** */
+const newArticle = document.querySelector('.articles');
+//console.log(nuarticle);
+
+
+/***create function and add param********************************************* */
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph, ) {
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const artDate = document.createElement('p');
+  const artPara1 = document.createElement('p');
+  const artPara2 = document.createElement('p');
+  const artPara3 = document.createElement('p');
+  const expBtnSpan = document.createElement('span');
+  const buttonOpen = document.createElement('button');
+  const buttonClose = document.createElement('button');
+
+  /****set up structure of elements******************************************* */
+
+  article.appendChild(h2);
+  article.appendChild(artDate);
+  article.appendChild(artPara1);
+  article.appendChild(artPara2);
+  article.appendChild(artPara3);
+  article.appendChild(expBtnSpan);
+  expBtnSpan.appendChild(buttonOpen);
+  expBtnSpan.appendChild(buttonClose);
+
+  /*****************set class list*********************************************** */
+
+  article.classList.add('article');
+  artDate.classList.add('date');
+  expBtnSpan.classList.add('expandButton');
+
+  /*******set text content*************************************************** */
+  //article.textContent = article;
+
+  h2.textContent = title;
+  artDate.textContent = date;
+  artPara1.textContent = firstParagraph;
+  artPara2.textContent = secondParagraph;
+  artPara3.textContent = thirdParagraph;
+  expBtnSpan.textContent = '\u25bc';
+
+
+  expBtnSpan.addEventListener('click', (event) => {
+    article.classList.toggle('article-open');
+    article.classList.toggle('close');
+  });
+
+  return article;
+}
+
+
+data.forEach((data) => {
+  newArticle.appendChild(createArticle(data.title, data.date, data.firstParagraph,
+    data.secondParagraph, data.thirdParagraph))
+})
