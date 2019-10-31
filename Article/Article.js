@@ -1,7 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -71,6 +70,7 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
+
     title: 'Professional Software Development in 2019',
     date: 'Jan 1st, 2019',
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
@@ -85,10 +85,57 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Dan Hamraj Full Stack Web @ Lambda 2019',
+    date: 'Oct 31st, 2019',
+    firstParagraph: `Some things takes a while to learn but , As previously mentioned, web development uses the benefits of HTML, CSS,
+     and Javascript to create effective and captivating websites with relative ease. Compare that to native applications, in which 
+     code must be specifically written for each marketplace, as the language and processes are significantly different. 
+     This requires significant resources as additional development skills and hardware must be acquired. `,
+
+    secondParagraph: `Without sacrificing quality, developing a website is definitely far cheaper than creating native applications. 
+    Rather than having to develop for multiple platforms, maintaining one codebase on a website will cost less, as there is one common 
+    skillset to utilize and focus on. `,
+
+    thirdParagraph: `An important side note is the potential for monetization through the two applications. Revenue from native apps 
+    would require in-app purchases, platform-specific ads, or purchase of the app itself. Basically, if people don’t take the 
+    time and effort to download your app, it’s hard to see any returns. Additionally, any revenue created from app purchases 
+    is subject to marketplace fees, which can be as high as 30%.`
+  },
+  {
+    title: 'Writing Asynchronous Tasks In Modern JavaScript',
+    date: 'Oct 25th, 2019',
+    firstParagraph: `JavaScript has two main characteristics as a programming 
+     language, both important to understand how our code will work.
+    First is its synchronous nature, which means the code will run line 
+    after line, almost as you read it, and secondly that it is single-threaded, 
+    only one command is being executed at any time.
+    As the language evolved, new artifacts appeared in the scene to allow 
+    asynchronous execution; developers tried different approaches while 
+    solving more complicated algorithms and data flows, which led to the 
+    emergence of new interfaces and patterns around them.`,
+
+    secondParagraph: `As mentioned in the introduction, JavaScript runs 
+    the code you write line by line, most of the time. Even in its first 
+    years, the language had exceptions to this rule, though they were a 
+    few and you might know them already: HTTP Requests, DOM events and 
+    time intervals.. `,
+
+    thirdParagraph: `If we add an event listener, for example the click 
+    of an element and the user triggers this interaction, the JavaScript 
+    engine will queue a task for the event listener callback but will 
+    continue executing what is present in its current stack. After it’s 
+    done with the calls present there, it will now run the listener’s callback.
+    This behavior is similar to what happens with network requests and timers, 
+    which were the first artifacts to access to asynchronous execution 
+    for web developers.`
   }
+
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+/* Step 1: Create a function that creates a component. 
+You will want your component to look like the template below: 
   
   <div class="article">
     <h2>{title of the article}</h2>
@@ -101,14 +148,82 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as it's one argument, or 
+  5 separate arguments mapping to each piece of the data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  Step 2: Add an event listener to the expandButton span. 
+  This event listener should toggle the class 'article-open' 
+  on the 'article' div.
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each 
+  object and add each component to the DOM as children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  Step 5: Add a new article to the array. Make sure it is 
+  in the same format as the others.
+   Refresh the page to see the new article.
 
 */
+
+/*************************grap HTML Element*********************************** */
+const newArticle = document.querySelector('.articles');
+//console.log(newArticle);
+
+
+/***create function and add param********************************************* */
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const artDate = document.createElement('p');
+  const artPara1 = document.createElement('p');
+  const artPara2 = document.createElement('p');
+  const artPara3 = document.createElement('p');
+  const expBtnSpan = document.createElement('span');
+  const buttonOpen = document.createElement('button');
+  // const buttonClose = document.createElement('button');
+
+  /****set up structure of elements******************************************* */
+
+  article.appendChild(h2);
+  article.appendChild(artDate);
+  article.appendChild(artPara1);
+  article.appendChild(artPara2);
+  article.appendChild(artPara3);
+  article.appendChild(expBtnSpan);
+  expBtnSpan.appendChild(buttonOpen);
+  // expBtnSpan.appendChild(buttonClose);
+
+  /*****************set class list*********************************************** */
+
+  article.classList.add('article');
+  h2.classList.add('h2');
+  artDate.classList.add('date');
+  expBtnSpan.classList.add('expandButton');
+
+  /*******set text content*************************************************** */
+
+
+  h2.textContent = title;
+  artDate.textContent = date;
+  artPara1.textContent = firstParagraph;
+  artPara2.textContent = secondParagraph;
+  artPara3.textContent = thirdParagraph;
+  buttonOpen.textContent = '\u25bc';
+  // buttonClose.textContent = '\u25b2';
+
+
+  expBtnSpan.addEventListener('click', (e) => {
+    article.classList.toggle('article-open');
+    article.classList.toggle('close');
+  });
+
+  return article;
+}
+
+
+data.forEach((curVal) => {
+  newArticle.appendChild(createArticle(curVal.title, curVal.date, curVal.firstParagraph,
+    curVal.secondParagraph, curVal.thirdParagraph))
+});
